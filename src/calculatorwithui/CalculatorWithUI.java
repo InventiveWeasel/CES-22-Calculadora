@@ -16,6 +16,7 @@ public class CalculatorWithUI {
      */
     public static void main(String[] args) {
         CalculatorEngine calc = new CalculatorEngine();
+        calc.initialize();
     }
     
 }

@@ -3,15 +3,22 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
  *
  * @author Gabriel Brito
  */
-public class CalculatorEngine {
+public class CalculatorEngine implements ActionListener{
     private final int HEIGHT = 640;
     private final int WIDTH = 480;
+    
+    private double keep;
+    private double value;
+    private char toDo;
+    boolean result;
     
     private JFrame frame;
     private JPanel fPane;
@@ -48,6 +55,10 @@ public class CalculatorEngine {
     private GridBagConstraints c;
     
     CalculatorEngine(){
+        keep = 0;
+        value = 0;
+        result = false;
+        
         frame = new JFrame("Calculadora do BIZU");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WIDTH, HEIGHT);
@@ -69,6 +80,10 @@ public class CalculatorEngine {
         moreLess = new JButton("moreLess");
         perc = new JButton("perc");
         div = new JButton("div");
+        clear.setText("C");
+        moreLess.setText("\u00b1");
+        perc.setText("\u0025");
+        div.setText("\u00f7");
         buttonRow1.add(clear);
         buttonRow1.add(moreLess);
         buttonRow1.add(perc);
@@ -82,6 +97,10 @@ public class CalculatorEngine {
         eight = new JButton("eight");
         nine = new JButton("nine");
         mult = new JButton("mult");
+        seven.setText("7");
+        eight.setText("8");
+        nine.setText("9");
+        mult.setText("\u00d7");
         buttonRow2.add(seven);
         buttonRow2.add(eight);
         buttonRow2.add(nine);
@@ -95,6 +114,10 @@ public class CalculatorEngine {
         five = new JButton("five");
         six = new JButton("six");
         minus = new JButton("minus");
+        four.setText("4");
+        five.setText("5");
+        six.setText("6");
+        minus.setText("\u2212");
         buttonRow3.add(four);
         buttonRow3.add(five);
         buttonRow3.add(six);
@@ -108,6 +131,10 @@ public class CalculatorEngine {
         two = new JButton("two");
         three = new JButton("three");
         plus = new JButton("plus");
+        one.setText("1");
+        two.setText("2");
+        three.setText("3");
+        plus.setText("\u002b");
         buttonRow4.add(one);
         buttonRow4.add(two);
         buttonRow4.add(three);
@@ -119,7 +146,7 @@ public class CalculatorEngine {
         buttonRow5.setLayout(new GridBagLayout());
         c = new GridBagConstraints();
         zero = new JButton("zero");
-        c.fill = GridBagConstraints.HORIZONTAL;
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 4;
         buttonRow5.add(zero, c);
@@ -130,8 +157,160 @@ public class CalculatorEngine {
         c.gridwidth = 2;
         c.gridx = 2;
         buttonRow5.add(equal, c);
+        zero.setText("0");
+        comma.setText(",");
+        equal.setText("\u003d");
         fPane.add(buttonRow5);
         
         frame.setVisible(true);
     }
+    
+    public void initialize(){
+        one.addActionListener(this);
+        two.addActionListener(this);
+        three.addActionListener(this);
+        four.addActionListener(this);
+        five.addActionListener(this);
+        six.addActionListener(this);
+        seven.addActionListener(this);
+        eight.addActionListener(this);
+        nine.addActionListener(this);
+        zero.addActionListener(this);
+        
+        mult.addActionListener(this);
+        minus.addActionListener(this);
+        plus.addActionListener(this);
+        div.addActionListener(this);
+        equal.addActionListener(this);
+        
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent event){
+        if(event.getSource() == one){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 1;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == two){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 2;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == three){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 3;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == four){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 4;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == five){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 5;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == six){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 6;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == seven){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 7;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == eight){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 8;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == nine){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 9;
+            display.setText(String.format("%f", value));
+        }
+        else if(event.getSource() == zero){
+            if(result){
+                value = 0;
+                result = false;
+            }
+            value = 10*value + 0;
+            display.setText(String.format("%f", value));
+        }
+        
+        else if(event.getSource() == plus){
+            keep = value;
+            value = 0;
+            display.setText("0,0");
+            toDo = '+';
+        }
+        else if(event.getSource() == minus){
+            keep = value;
+            value = 0;
+            display.setText("0,0");
+            toDo = '-';
+        }
+        else if(event.getSource() == mult){
+            keep = value;
+            value = 0;
+            display.setText("0,0");
+            toDo = '*';
+        }
+        else if(event.getSource() == div){
+            keep = value;
+            value = 0;
+            display.setText("0,0");
+            toDo = '/';
+        }
+        
+        else if(event.getSource() == equal){
+            switch(toDo){
+                case '+':
+                    value = value+keep;
+                    break;
+                case '-':
+                    value = keep-value;
+                    break;
+                case '*':
+                    value = value*keep;
+                    break;
+                case '/':
+                    value = keep/value;
+                    break;
+            }
+            display.setText(String.format("%f", value));
+            result = true;
+        }
+    }
+    
 }
