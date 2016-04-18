@@ -194,6 +194,7 @@ public class CalculatorEngine implements ActionListener{
         moreLess.addActionListener(this);
         comma.addActionListener(this);
         clear.addActionListener(this);
+        perc.addActionListener(this);
         
     }
     
@@ -345,7 +346,7 @@ public class CalculatorEngine implements ActionListener{
                 commaCounter++;
             }
             else
-                value = 10*value + 0;
+                value = 10*value;
             display.setText(String.format("%g", value));
         }
         
@@ -405,6 +406,12 @@ public class CalculatorEngine implements ActionListener{
         else if(event.getSource() == comma){
             hasComma = true;
             commaCounter = 1;
+        }
+        
+        else if(event.getSource()==perc){
+            value = value/100;
+            display.setText(String.format("%g", value));
+            System.out.println(value);
         }
         
         else if(event.getSource() == clear){
