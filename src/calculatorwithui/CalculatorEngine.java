@@ -1,5 +1,6 @@
 package calculatorwithui;
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -12,13 +13,16 @@ import javax.swing.*;
  * @author Gabriel Brito
  */
 public class CalculatorEngine implements ActionListener{
-    private final int HEIGHT = 640;
-    private final int WIDTH = 480;
+    private final int HEIGHT = 220;
+    private final int WIDTH = 240;
     
     private double keep;
     private double value;
     private char toDo;
-    boolean result;
+    private boolean result;
+    private boolean hasComma;
+    private int commaCounter;
+    
     
     private JFrame frame;
     private JPanel fPane;
@@ -58,6 +62,8 @@ public class CalculatorEngine implements ActionListener{
         keep = 0;
         value = 0;
         result = false;
+        hasComma = false;
+        commaCounter = 0;
         
         frame = new JFrame("Calculadora do BIZU");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +75,9 @@ public class CalculatorEngine implements ActionListener{
         
         display = new JTextField(30);
         display.setText("0.0");
+        Font font = new Font("Courier", Font.BOLD,30);
         //display.setSize(WIDTH, HEIGHT/5);
+        display.setFont(font);
         display.setEditable(false);
         fPane.add(display);
         
@@ -183,6 +191,10 @@ public class CalculatorEngine implements ActionListener{
         div.addActionListener(this);
         equal.addActionListener(this);
         
+        moreLess.addActionListener(this);
+        comma.addActionListener(this);
+        clear.addActionListener(this);
+        
     }
     
     @Override
@@ -191,104 +203,177 @@ public class CalculatorEngine implements ActionListener{
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 1;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*1;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 1;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == two){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;commaCounter = 0;
             }
-            value = 10*value + 2;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*2;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 2;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == three){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 3;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*3;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 3;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == four){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 4;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*4;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 4;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == five){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 5;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*5;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 5;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == six){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 6;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*6;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 6;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == seven){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 7;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*7;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 7;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == eight){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 8;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*8;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 8;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == nine){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 9;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*9;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 9;
+            display.setText(String.format("%g", value));
         }
         else if(event.getSource() == zero){
             if(result){
                 value = 0;
                 result = false;
+                hasComma = false;
+                commaCounter = 0;
             }
-            value = 10*value + 0;
-            display.setText(String.format("%f", value));
+            if(hasComma){
+                value = value + Math.pow(10, -commaCounter)*0;
+                commaCounter++;
+            }
+            else
+                value = 10*value + 0;
+            display.setText(String.format("%g", value));
         }
         
         else if(event.getSource() == plus){
             keep = value;
             value = 0;
+            commaCounter = 0;
             display.setText("0,0");
             toDo = '+';
         }
         else if(event.getSource() == minus){
             keep = value;
             value = 0;
+            commaCounter = 0;
             display.setText("0,0");
             toDo = '-';
         }
         else if(event.getSource() == mult){
             keep = value;
             value = 0;
+            commaCounter = 0;
             display.setText("0,0");
             toDo = '*';
         }
         else if(event.getSource() == div){
             keep = value;
             value = 0;
+            commaCounter = 0;
             display.setText("0,0");
             toDo = '/';
         }
@@ -308,8 +393,25 @@ public class CalculatorEngine implements ActionListener{
                     value = keep/value;
                     break;
             }
-            display.setText(String.format("%f", value));
+            display.setText(String.format("%g", value));
             result = true;
+        }
+        
+        else if(event.getSource() == moreLess){
+            value = -value;
+            display.setText(String.format("%g", value));
+        }
+        
+        else if(event.getSource() == comma){
+            hasComma = true;
+            commaCounter = 1;
+        }
+        
+        else if(event.getSource() == clear){
+            value = 0;
+            keep = 0;
+            commaCounter = 0;
+            display.setText("0,0");
         }
     }
     
