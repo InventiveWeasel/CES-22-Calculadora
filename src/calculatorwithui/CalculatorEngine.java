@@ -1,5 +1,6 @@
 package calculatorwithui;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -14,7 +15,7 @@ import javax.swing.*;
  */
 public class CalculatorEngine implements ActionListener{
     private final int HEIGHT = 220;
-    private final int WIDTH = 240;
+    private final int WIDTH = 270;
     
     private double keep;
     private double value;
@@ -170,6 +171,10 @@ public class CalculatorEngine implements ActionListener{
         equal.setText("\u003d");
         fPane.add(buttonRow5);
         
+        //frame.pack();
+        Dimension a = clear.getPreferredSize();
+        double w = a.getWidth();
+        double h = a.getHeight();
         frame.setVisible(true);
     }
     
@@ -213,7 +218,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 1;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == two){
             if(result){
@@ -227,7 +232,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 2;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == three){
             if(result){
@@ -242,7 +247,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 3;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == four){
             if(result){
@@ -257,7 +262,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 4;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == five){
             if(result){
@@ -272,7 +277,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 5;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == six){
             if(result){
@@ -287,7 +292,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 6;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == seven){
             if(result){
@@ -302,7 +307,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 7;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == eight){
             if(result){
@@ -317,7 +322,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 8;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == nine){
             if(result){
@@ -332,7 +337,7 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value + 9;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         else if(event.getSource() == zero){
             if(result){
@@ -347,11 +352,12 @@ public class CalculatorEngine implements ActionListener{
             }
             else
                 value = 10*value;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         
         else if(event.getSource() == plus){
             keep = value;
+            hasComma = false;
             value = 0;
             commaCounter = 0;
             display.setText("0,0");
@@ -359,6 +365,7 @@ public class CalculatorEngine implements ActionListener{
         }
         else if(event.getSource() == minus){
             keep = value;
+            hasComma = false;
             value = 0;
             commaCounter = 0;
             display.setText("0,0");
@@ -366,6 +373,7 @@ public class CalculatorEngine implements ActionListener{
         }
         else if(event.getSource() == mult){
             keep = value;
+            hasComma = false;
             value = 0;
             commaCounter = 0;
             display.setText("0,0");
@@ -373,6 +381,7 @@ public class CalculatorEngine implements ActionListener{
         }
         else if(event.getSource() == div){
             keep = value;
+            hasComma = false;
             value = 0;
             commaCounter = 0;
             display.setText("0,0");
@@ -394,13 +403,13 @@ public class CalculatorEngine implements ActionListener{
                     value = keep/value;
                     break;
             }
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
             result = true;
         }
         
         else if(event.getSource() == moreLess){
             value = -value;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
         }
         
         else if(event.getSource() == comma){
@@ -410,7 +419,7 @@ public class CalculatorEngine implements ActionListener{
         
         else if(event.getSource()==perc){
             value = value/100;
-            display.setText(String.format("%g", value));
+            display.setText(String.format("%.9g", value));
             System.out.println(value);
         }
         
